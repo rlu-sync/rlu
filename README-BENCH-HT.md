@@ -34,7 +34,9 @@ In this benchmark we use:
 
 (3) Harris-Michael list that is based on synchrobench (https://github.com/gramoli/synchrobench)
 
-(4) Hazard pointers that are based on thread-scan (https://github.com/Willtor/ThreadScan) and stack-track (https://github.com/armafire/stack_track)
+(4) Hazard pointers that are based on thread-scan and stack-track
+    (https://github.com/Willtor/ThreadScan)
+    (https://github.com/armafire/stack_track)
 
 Compilation
 -----------
