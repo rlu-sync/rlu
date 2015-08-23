@@ -6,13 +6,17 @@ Read-Log-Update: A Lightweight Synchronization Mechanism for Concurrent Programm
 Authors
 -------
 Alexander Matveev (MIT)
+
 Nir Shavit (MIT and Tel-Aviv University)
+
 Pascal Felber (University of Neuchatel)
+
 Patrick Marlier (University of Neuchatel)
 
 Code Maintainer
 -----------------
 Name:  Alexander Matveev
+
 Email: amatveev@csail.mit.edu
 
 RLU v1.0 (08/23/2015) 
