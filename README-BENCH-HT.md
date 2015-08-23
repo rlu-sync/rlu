@@ -47,31 +47,40 @@ Execution Options
         Print this message
 
   -a, --do-not-alternate
-	    Do not alternate insertions and removals
+	    
+        Do not alternate insertions and removals
 
   -w, --rlu-max-ws
-	    Maximum number of write-sets aggregated in RLU deferral (default=(1))
+	    
+        Maximum number of write-sets aggregated in RLU deferral (default=(1))
 
   -b, --buckets
+        
         Number of buckets (for linked-list use 1, default=(1))
 
   -d, --duration <int>
+        
         Test duration in milliseconds (0=infinite, default=(10000))
 
   -i, --initial-size <int>
+        
         Number of elements to insert before test (default=(256))
 
   -r, --range <int>
+        
         Range of integer values inserted in set (default=((256) * 2))
 
   -s, --seed <int>
+        
         RNG seed (0=time-based, default=(0))
 
   -u, --update-rate <int>
+        
         Percentage of update transactions: 0-1000 (100%) (default=(200))
 
   -n, --num-threads <int>
-	    Number of threads (default=(1))
+	    
+        Number of threads (default=(1))
 
 Example
 -------
