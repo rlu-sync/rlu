@@ -87,9 +87,13 @@ Example
 ./bench-rlu -a -b1000 -d10000 -i100000 -r200000 -w10 -u200 -n16
 
   => Initializes a 100,000 items RLU hash-table with 1000 buckets (100 items per bucket).
+  
   => The key range is 200,000, and the update ratio is 20% (10% inserts and 10% removes).
+
   => Has no alternation: completely randomized insert/remove.
+
   => Uses RLU deferral with maximum number of write-sets set to 10.
+
   => Executes 16 threads for 10 seconds.
  
 ./bench-rcu -a -b1000 -d10000 -i100000 -r200000 -w10 -u200 -n16
