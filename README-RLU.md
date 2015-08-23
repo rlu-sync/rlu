@@ -43,34 +43,49 @@ Brief Tutorial
 (1) Add "rlu.c" and "rlu.h" to your project and include "rlu.h"
 
 (2) On program start call "RLU_INIT(type, max_write_sets)":
+  
   => Set "type" to RLU_TYPE_FINE_GRAINED or RLU_TYPE_COARSE_GRAINED
+  
   => For fine-grained, "max_write_sets" defines the number of write-sets that RLU deferral can aggregate.
+  
   => For coarse-grained, "max_write_sets" must be 1 (no RLU deferral)
 
 (3) For each created thread:
+  
   => On thread start call RLU_THREAD_INIT(self), where self is "rlu_thread_data_t *"
+  
   => On thread finish call RLU_THREAD_FINISH(self)
 
 (4) Allocate RLU-protected objects with RLU_ALLOC(obj_size)
 
 (5) To execute an RLU protected section:
+  
   => On section start call RLU_READER_LOCK(self)
+  
   => On section finish call RLU_READER_UNLOCK(self)
 
 (6) Inside the section:
+  
   => Use RLU_DEREF(self, p_obj) to dereference pointer "p_obj"
+  
   => Before modifying to an object pointed by "p_obj", you need to lock (and log) this object.
 	 
 	 (A) If RLU is fine-grained, then use RLU_TRY_LOCK(self, p_p_obj), where "p_p_obj" is pointer to "p_obj".
+           
            * After RLU_TRY_LOCK(self, p_p_obj) returns, "p_obj" will point to a copy that you can modify.
+	       
 	       * This call can fail, in which case you need to call RLU_ABORT(self)
 	 
 	 (B) If RLU is coarse-grained, then use RLU_LOCK(self, p_p_obj), where "p_p_obj" is pointer to "p_obj".
+           
            * After RLU_LOCK(self, p_p_obj) returns, "p_obj" will point to a copy that you can modify.
+           
            * This call never fails. To achieve this, RLU provides writer locks that you can use to serialize 
              and coordinate writers. The API function is: 
              RLU_TRY_WRITER_LOCK(self, writer_lock_id)
+               
                * When RLU completes or aborts, it ensures to release all writer locks (no need to manage them).
+               
                * This call can fail, in which case you need to call RLU_ABORT(self) to release all locks.
      
   => Use RLU_ASSIGN_PTR(self, p_ptr, p_obj) to assign p_obj to location pointed by p_ptr (*p_ptr = p_obj)
