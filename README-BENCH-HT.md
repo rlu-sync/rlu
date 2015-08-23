@@ -43,6 +43,7 @@ Execute "make"
 Execution Options
 -----------------
   -h, --help
+        
         Print this message
 
   -a, --do-not-alternate
