@@ -75,6 +75,7 @@ Brief Tutorial
                * This call can fail, in which case you need to call RLU_ABORT(self) to release all locks.
      
   => Use RLU_ASSIGN_PTR(self, p_ptr, p_obj) to assign p_obj to location pointed by p_ptr (*p_ptr = p_obj)
+
   => Use RLU_IS_SAME_PTRS(p_obj_1, p_obj_2) to compare two pointers
 
   => Use RLU_FREE(self, p_obj) to free "p_obj"
