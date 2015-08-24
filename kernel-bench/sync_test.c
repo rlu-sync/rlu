@@ -18,11 +18,12 @@
 #include "hash-list.h"
 #include "intset.h"
 
-#define MODULE_NAME "sync_test"
+#define MODULE_NAME    "sync_test"
 #define MAX_BENCHMARKS (16)
 #ifndef RLU_DEFER_WS
-# define RLU_DEFER_WS (1)
+# define RLU_DEFER_WS  (1)
 #endif
+#define FORCE_SCHED    (1) /* Enable this define to allow long execution */
 
 /* Bench configuration */
 static char *benchmark = "rcuhashlist";
@@ -145,7 +146,10 @@ static int sync_test_thread(void* data)
         }
         end = current_kernel_time();
         duration_ms = (end.tv_sec * 1000 + end.tv_nsec / 1000000) - (start.tv_sec * 1000 + start.tv_nsec / 1000000);
+#ifdef FORCE_SCHED
         /* No need to force schedule(), time bound. */
+        cond_resched();
+#endif /* FORCE_SCHED */
     } while (duration_ms < duration);
 
     tsc_end = get_cycles();
