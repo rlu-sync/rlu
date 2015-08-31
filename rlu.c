@@ -718,18 +718,18 @@ intptr_t *rlu_alloc(obj_size_t obj_size) {
 }
 
 void rlu_free(rlu_thread_data_t *self, intptr_t *p_obj) {
-	rlu_assert_in_section(self);
-
 	if (p_obj == NULL) {
 		return;
 	}
-
-	p_obj = (intptr_t *)FORCE_ACTUAL(p_obj);
 
 	if (self == NULL) {
 		free((intptr_t *)OBJ_TO_H(p_obj));
 		return;
 	}
+	
+	rlu_assert_in_section(self);
+	
+	p_obj = (intptr_t *)FORCE_ACTUAL(p_obj);
 
 	self->free_nodes[self->free_nodes_size] = p_obj;
 	self->free_nodes_size++;
